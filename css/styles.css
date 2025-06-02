@@ -167,11 +167,13 @@ body {
 }
 
 .map-container {
+    position: relative;
     height: 400px;
     background-color: var(--white);
     border-radius: 12px;
     box-shadow: 0 4px 20px var(--shadow);
     margin-top: 2rem;
+    overflow: hidden;
 }
 
 /* Weather Section */
@@ -371,6 +373,50 @@ footer {
 /* Map Container Animation */
 .map-container iframe {
     transition: all 0.5s ease;
+}
+
+/* Map Controls */
+.map-controls {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.map-control-btn {
+    background: var(--white);
+    border: none;
+    border-radius: 4px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 4px var(--shadow);
+    transition: all 0.3s ease;
+}
+
+.map-control-btn:hover {
+    background: var(--primary);
+    color: var(--white);
+}
+
+/* Custom Marker Styles */
+.custom-marker {
+    background-color: var(--primary);
+    border-radius: 50%;
+    border: 2px solid var(--white);
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    box-shadow: 0 2px 4px var(--shadow);
 }
 
 /* Responsive Design */

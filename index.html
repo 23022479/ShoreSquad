@@ -42,16 +42,15 @@
                 <p><i class="far fa-clock"></i> Time: 8:00 AM - 11:00 AM</p>
                 <p><i class="fas fa-users"></i> Participants: 24/50</p>
                 <button class="primary-btn join-cleanup-btn">Join This Cleanup</button>
-            </div>
-            <div id="cleanup-map" class="map-container"><iframe
-                    width="100%"
-                    height="100%"
-                    style="border:0"
-                    loading="lazy"
-                    allowfullscreen
-                    referrerpolicy="no-referrer-when-downgrade"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.6345903843265!2d103.95557399999999!3d1.381497!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMcKwMjInNTMuNCJOIDEwM8KwNTcnMjAuMSJF!5e0!3m2!1sen!2s!4v1685750400000!5m2!1sen!2s">
-                </iframe>
+            </div>            <div id="cleanup-map" class="map-container">
+                <div class="map-controls">
+                    <button id="zoom-in" class="map-control-btn" title="Zoom In">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                    <button id="zoom-out" class="map-control-btn" title="Zoom Out">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                </div>
             </div>
         </section>        <section id="weather" class="weather-section">
             <h2>Beach Weather Forecast</h2>
@@ -114,8 +113,8 @@
         <div class="footer-bottom">
             <p>&copy; 2025 ShoreSquad. All rights reserved.</p>
         </div>
-    </footer>
-
+    </footer>    <!-- Google Maps JavaScript API -->
+    <script src="https://maps.googleapis.com/maps/api/js?callback=initMap" async defer></script>
     <script src="js/app.js"></script>
 </body>
 </html>
