@@ -125,107 +125,29 @@ function updateParticipantCount(locationName) {
     }
 }
 
-let map;
-let currentMarker;
-const defaultZoom = 15;
-const joinZoom = 17;
-
-// Initialize Google Map
-function initMap() {
-    const defaultLocation = { lat: 1.381497, lng: 103.955574 }; // Pasir Ris
-    
-    map = new google.maps.Map(document.getElementById('cleanup-map'), {
-        center: defaultLocation,
-        zoom: defaultZoom,
-        styles: [
-            {
-                featureType: 'water',
-                elementType: 'geometry',
-                stylers: [{ color: '#1CA4B8' }]
-            },
-            {
-                featureType: 'landscape',
-                elementType: 'geometry',
-                stylers: [{ color: '#F5F9FA' }]
-            }
-        ],
-        mapTypeControl: false,
-        fullscreenControl: false,
-        streetViewControl: false
-    });
-
-    // Add zoom controls
-    document.getElementById('zoom-in').addEventListener('click', () => {
-        map.setZoom(map.getZoom() + 1);
-    });
-    
-    document.getElementById('zoom-out').addEventListener('click', () => {
-        map.setZoom(map.getZoom() - 1);
-    });
-
-    // Initialize with default location
-    updateMap(cleanupLocations['pasir-ris']);
-}
-
 // Update map with new location
 function updateMap(location, isJoining = false) {
-    const [lat, lng] = location.coordinates.split(',').map(Number);
-    const position = { lat, lng };
-
-    // Remove existing marker if any
-    if (currentMarker) {
-        currentMarker.setMap(null);
-    }
-
-    // Create custom marker
-    currentMarker = new google.maps.Marker({
-        position: position,
-        map: map,
-        title: location.name,
-        animation: google.maps.Animation.DROP,
-        icon: {
-            path: google.maps.SymbolPath.CIRCLE,
-            fillColor: '#1CA4B8',
-            fillOpacity: 1,
-            strokeColor: '#FFFFFF',
-            strokeWeight: 2,
-            scale: 10
-        }
-    });
-
-    // Add info window
-    const infoWindow = new google.maps.InfoWindow({
-        content: `
-            <div style="padding: 10px;">
-                <h3 style="color: #1CA4B8; margin: 0 0 5px 0;">${location.name}</h3>
-                <p style="margin: 5px 0;"><strong>Date:</strong> ${location.date}</p>
-                <p style="margin: 5px 0;"><strong>Time:</strong> ${location.time}</p>
-            </div>
-        `
-    });
-
-    currentMarker.addListener('click', () => {
-        infoWindow.open(map, currentMarker);
-    });
-
-    // Pan and zoom to location
-    map.panTo(position);
-    map.setZoom(isJoining ? joinZoom : defaultZoom);
+    const mapContainer = document.getElementById('cleanup-map');
+    const [lat, lng] = location.coordinates.split(',');
+    
+    // Use a higher zoom level when joining
+    const zoomLevel = isJoining ? '17' : '15';
+    
+    mapContainer.innerHTML = `
+        <iframe
+            width="100%"
+            height="100%"
+            style="border:0"
+            loading="lazy"
+            allowfullscreen
+            referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.6345903843265!2d${lng}!3d${lat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f${zoomLevel}!3m3!1m2!1s0x0%3A0x0!2zMcKwMjInNTMuNCJOIDEwM8KwNTcnMjAuMSJF!5e0!3m2!1sen!2s!4v1685750400000!5m2!1sen!2s">
+        </iframe>
+    `;
 
     // Add smooth scroll to map when joining
     if (isJoining) {
-        document.getElementById('cleanup-map').scrollIntoView({ 
-            behavior: 'smooth', 
-            block: 'center' 
-        });
-    }
-
-    // Bounce animation when joining
-    if (isJoining) {
-        currentMarker.setAnimation(google.maps.Animation.BOUNCE);
-        setTimeout(() => {
-            currentMarker.setAnimation(null);
-        }, 2100);
+        mapContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
 }
 
