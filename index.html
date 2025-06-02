@@ -27,19 +27,50 @@
             <h1>Make Waves of Change</h1>
             <p>Rally your crew, track weather, and join the next beach cleanup!</p>
             <button class="cta-btn">Find Nearest Cleanup</button>
-        </section>
-
-        <section id="map" class="map-section">
-            <h2>Beach Cleanup Map</h2>
-            <div id="cleanup-map" class="map-container">
-                <!-- Map will be initialized here -->
+        </section>        <section id="map" class="map-section">            <h2>Beach Cleanup Map</h2>
+            <div class="location-selector">
+                <select id="cleanup-location" class="location-select">
+                    <option value="pasir-ris" selected>Pasir Ris Beach (Next: June 15)</option>
+                    <option value="east-coast">East Coast Park (Next: June 22)</option>
+                    <option value="punggol">Punggol Beach (Next: June 29)</option>
+                    <option value="changi">Changi Beach (Next: July 6)</option>
+                </select>
             </div>
-        </section>
-
-        <section id="weather" class="weather-section">
-            <h2>Beach Weather</h2>
+            <div class="next-cleanup-info" id="cleanup-details">
+                <h3><i class="fas fa-map-marker-alt"></i> Next Cleanup: Pasir Ris Beach</h3>
+                <p><i class="far fa-calendar"></i> Date: June 15, 2025</p>
+                <p><i class="far fa-clock"></i> Time: 8:00 AM - 11:00 AM</p>
+                <p><i class="fas fa-users"></i> Participants: 24/50</p>
+                <button class="primary-btn join-cleanup-btn">Join This Cleanup</button>
+            </div>
+            <div id="cleanup-map" class="map-container"><iframe
+                    width="100%"
+                    height="100%"
+                    style="border:0"
+                    loading="lazy"
+                    allowfullscreen
+                    referrerpolicy="no-referrer-when-downgrade"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.6345903843265!2d103.95557399999999!3d1.381497!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMcKwMjInNTMuNCJOIDEwM8KwNTcnMjAuMSJF!5e0!3m2!1sen!2s!4v1685750400000!5m2!1sen!2s">
+                </iframe>
+            </div>
+        </section>        <section id="weather" class="weather-section">
+            <h2>Beach Weather Forecast</h2>
             <div class="weather-container">
-                <!-- Weather info will be populated here -->
+                <div class="weather-location">
+                    <select id="weather-location" class="location-select">
+                        <option value="pasir-ris">Pasir Ris Beach</option>
+                        <option value="east-coast">East Coast Park</option>
+                        <option value="punggol">Punggol Beach</option>
+                        <option value="changi">Changi Beach</option>
+                    </select>
+                </div>
+                <div class="weather-cards" id="weather-forecast">
+                    <!-- Weather cards will be populated here -->
+                    <div class="loading-weather">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <p>Loading weather data...</p>
+                    </div>
+                </div>
             </div>
         </section>
 
